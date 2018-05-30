@@ -1,0 +1,74 @@
+<h2 style="color:blue" >The list of Contact </h2>
+<nav  class="navbar navbar-default" style="background-color:rgb(105, 142, 35)">
+<table class="table" ng-if="users.length>0">
+ <tr style="color:blue">
+  <th>Name of contact </th>
+ <th>Phone of contact</th>
+ <th>Location of contact</th>
+ <th>Job of contact</th>
+ <th style="color:rgb(255, 0, 106)">Actions</th>
+ </tr>
+ <tr ng-repeat="user in users" style="color:palegreen">
+ 
+  <td>{{user.name}}</td>
+ <td>{{user.phone}}</td>
+ <td>{{user.location}}</td>
+ <td>{{user.job}}</td>
+ <td>
+ <a href="#" ng-click="edituser(user._id)"  style="color:rgb(253, 250, 250)">Edit</a> |
+ <a href="#" ng-click="deleteUser(user._id)"  style="color:rgb(253, 250, 250)">Delete</a>
+ </td>
+ </tr>
+</table>
+<div ng-if="users.length==0">
+ No record found !!
+</div>
+</nav>
+<nav  class="navbar navbar-default" style="background-color:rgb(114, 146, 245)" style="color:rgb(253, 250, 250)">
+<h2 ng-show="user._id!=null"  style="color:rgb(253, 250, 250)">Edit</h2>
+<h2 ng-hide="user._id!=null"  style="color:rgb(253, 250, 250)">Create</h2>
+<hr>
+<form name="userForm" ng-submit="saveData(user)" novalidate class="form-horizontal"  style="color:rgb(253, 250, 250)">
+ <div class="form-group">
+ <label class="col-md-2">Name</label>
+ <div class="col-md-10">
+ <input type="text" ng-model="user.name" name="name" ng-required="true" class="form-control"/>
+ <p ng-show="userForm.name.$error.required && (userForm.$submitted || userForm.name.$dirty)" class="text-danger">Please Enter Name</p>
+ </div>
+ </div>
+ <div class="form-group">
+ <label class="col-md-2">Phone</label>
+ <div class="col-md-10">
+ <textarea name="phone" ng-model="user.phone" ng-required="true" class="form-control"></textarea>
+ <p ng-show="userForm.phone.$error.required && (userForm.$submitted || userForm.phone.$dirty)" class="text-danger">Please Enter Phone</p>
+ </div>
+ </div>
+
+ <div class="form-group">
+    <label class="col-md-2">Location</label>
+    <div class="col-md-10">
+    <textarea name="location" ng-model="user.location" ng-required="true" class="form-control"></textarea>
+    <p ng-show="userForm.location.$error.required && (userForm.$submitted || userForm.location.$dirty)" class="text-danger">Please Enter Location</p>
+    </div>
+    </div>
+
+ <div class="form-group">
+ <label class="col-md-2">Job</label>
+ <div class="col-md-10">
+ <input type="text" ng-model="user.job" name="job" ng-required="true" class="form-control"/>
+ <p ng-show="userForm.job.$error.required && (userForm.$submitted || userForm.job.$dirty)" class="text-danger">Please Enter Job</p>
+ </div>
+ </div>
+ 
+ <div class="form-group">
+ <div class="col-md-offset-2 col-md-10">
+ <input type="submit" value="Update" class="btn btn-primary" ng-show="user._id!=null"/>
+ <input type="submit" value="Save" class="btn btn-primary" ng-hide="user._id!=null"/>
+ <a ui-sref="users" class="btn btn-warning">Cancel</a>
+ </div>
+ </div>
+</form>
+
+</nav>
+
+
