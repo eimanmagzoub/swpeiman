@@ -26,7 +26,7 @@
     });
     })
     .constant("globalConfig", {
-    apiAddress: 'http://localhost:3000/api'
+    apiAddress: 'https://eimanswp.herokuapp.com/api'
     });
    })();
 
